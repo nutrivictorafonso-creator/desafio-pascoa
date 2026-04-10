@@ -7,18 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --verde: #92C68F;
+    --verde:        #92C68F;
     --verde-escuro: #6aab67;
-    --verde-claro: #e8f5e7;
-    --verde-suave: #f2faf1;
-    --texto: #2a2a2a;
-    --muted: #8a9a89;
-    --borda: #d4e8d2;
-    --branco: #ffffff;
-    --fundo: #f7fcf6;
-    --gold: #c8a94a;
-    --silver: #8a9aaa;
-    --bronze: #b07848;
+    --verde-suave:  #f2faf1;
+    --verde-claro:  #e8f5e7;
+    --texto:        #2a2a2a;
+    --muted:        #8a9a89;
+    --borda:        #d4e8d2;
+    --branco:       #ffffff;
+    --fundo:        #f7fcf6;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +27,6 @@
     min-height: 100vh;
   }
 
-  /* --- FUNDO DECORATIVO --- */
   body::before {
     content: '';
     position: fixed;
@@ -58,612 +54,200 @@
     z-index: 1;
     max-width: 680px;
     margin: 0 auto;
-    padding: 48px 24px 80px;
+    padding: 48px 20px 80px;
   }
 
-  /* --- HEADER --- */
+  /* ── HEADER ── */
   .header {
     text-align: center;
-    margin-bottom: 44px;
+    margin-bottom: 40px;
   }
 
-  /* Logo SVG inline — iniciais VA estilizadas */
   .logo-mark {
-    width: 72px;
-    height: 72px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--borda);
+    background: white;
+    padding: 4px;
     margin: 0 auto 16px;
+    display: block;
   }
 
   .brand-name {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--texto);
-    line-height: 1;
-    margin-bottom: 4px;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--texto); line-height: 1; margin-bottom: 4px;
   }
 
   .brand-sub {
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 28px;
+    font-size: 10px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 24px;
   }
 
   .divider {
-    width: 40px;
-    height: 2px;
+    width: 40px; height: 2px;
     background: var(--verde);
-    margin: 0 auto 20px;
-    border-radius: 2px;
+    margin: 0 auto 18px; border-radius: 2px;
   }
 
   .challenge-title {
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--verde-escuro);
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 13px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--verde-escuro);
+    font-weight: 700; margin-bottom: 6px;
   }
 
   .challenge-dates {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 300;
+    font-size: 13px; color: var(--muted); font-weight: 300;
   }
 
-  /* --- STATUS --- */
+  /* ── STATUS ── */
   .status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 36px;
+    display: flex; align-items: center;
+    justify-content: center; gap: 8px;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 32px;
   }
 
   .dot {
     width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--verde);
-    animation: pulse 2.5s infinite;
+    border-radius: 50%; background: var(--verde);
+    animation: pulse 2.5s infinite; flex-shrink: 0;
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
+    50%       { opacity: 0.4; transform: scale(0.8); }
   }
 
-  /* --- PODIUM --- */
+  /* ── PÓDIO ── */
   .podium-wrap {
     background: var(--branco);
     border: 1px solid var(--borda);
     border-radius: 20px;
-    padding: 36px 24px 0;
-    margin-bottom: 28px;
+    padding: 32px 16px 0;
+    margin-bottom: 24px;
     overflow: hidden;
   }
 
   .podium-label {
     text-align: center;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 28px;
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 24px;
   }
 
-  .podium {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 6px;
+  .podium-top3 {
+    display: flex; align-items: flex-end;
+    justify-content: center; gap: 4px;
+  }
+
+  .podium-45 {
+    display: flex; justify-content: center;
+    gap: 4px; margin-top: 12px;
+    padding: 0 8px 24px;
   }
 
   .podium-item {
-    flex: 1;
-    max-width: 190px;
+    flex: 1; max-width: 180px;
     text-align: center;
     animation: riseUp 0.6s cubic-bezier(.22,.68,0,1.15) both;
   }
 
-  .podium-item:nth-child(1) { animation-delay: 0.15s; }
-  .podium-item:nth-child(2) { animation-delay: 0s; }
-  .podium-item:nth-child(3) { animation-delay: 0.3s; }
+  .podium-top3 .podium-item:nth-child(1) { animation-delay: 0.15s; }
+  .podium-top3 .podium-item:nth-child(2) { animation-delay: 0s; }
+  .podium-top3 .podium-item:nth-child(3) { animation-delay: 0.3s; }
+  .podium-45   .podium-item:nth-child(1) { animation-delay: 0.4s; }
+  .podium-45   .podium-item:nth-child(2) { animation-delay: 0.5s; }
 
   @keyframes riseUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  .p-medal { font-size: 18px; margin-bottom: 6px; }
+
   .p-avatar {
-    width: 52px; height: 52px;
-    border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 900;
-    margin: 0 auto 10px;
+    font-size: 17px; font-weight: 900;
+    margin: 0 auto 8px;
     border: 2px solid var(--borda);
-    background: var(--verde-suave);
-    color: var(--verde-escuro);
-    letter-spacing: 0.03em;
+    background: var(--verde-suave); color: var(--verde-escuro);
   }
 
   .podium-item.p1 .p-avatar {
     width: 62px; height: 62px; font-size: 22px;
-    background: rgba(146,198,143,0.15);
-    border-color: var(--verde);
-    color: var(--verde-escuro);
+    background: rgba(146,198,143,0.15); border-color: var(--verde);
+  }
+
+  .podium-item.p45 .p-avatar {
+    width: 40px; height: 40px; font-size: 14px;
+    background: rgba(146,198,143,0.05);
+    border-color: var(--borda); color: var(--muted);
   }
 
   .p-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--texto);
+    font-size: 12px; font-weight: 700; color: var(--texto);
     margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
 
-  .podium-item.p1 .p-name { font-size: 14px; }
+  .podium-item.p1  .p-name { font-size: 14px; }
+  .podium-item.p45 .p-name { font-size: 11px; color: var(--muted); }
 
-  .p-id {
-    font-size: 10px;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
+  .p-id { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
 
   .p-block {
-    border-radius: 8px 8px 0 0;
-    padding: 14px 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    border-radius: 8px 8px 0 0; padding: 12px 8px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 2px;
   }
 
   .podium-item.p1 .p-block {
     height: 100px;
-    background: linear-gradient(180deg, rgba(146,198,143,0.2) 0%, rgba(146,198,143,0.08) 100%);
-    border: 1px solid rgba(146,198,143,0.35);
-    border-bottom: none;
+    background: linear-gradient(180deg, rgba(146,198,143,0.2) 0%, rgba(146,198,143,0.06) 100%);
+    border: 1px solid rgba(146,198,143,0.35); border-bottom: none;
   }
 
   .podium-item.p2 .p-block {
     height: 72px;
     background: rgba(138,154,170,0.07);
-    border: 1px solid rgba(138,154,170,0.2);
-    border-bottom: none;
+    border: 1px solid rgba(138,154,170,0.2); border-bottom: none;
   }
 
   .podium-item.p3 .p-block {
     height: 52px;
     background: rgba(176,120,72,0.07);
-    border: 1px solid rgba(176,120,72,0.2);
-    border-bottom: none;
+    border: 1px solid rgba(176,120,72,0.2); border-bottom: none;
+  }
+
+  .podium-item.p45 .p-block {
+    height: 36px;
+    background: rgba(146,198,143,0.04);
+    border: 1px solid var(--borda); border-radius: 8px;
   }
 
   .p-pts {
-    font-size: 26px;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--texto);
+    font-size: 24px; font-weight: 900;
+    line-height: 1; color: var(--texto);
   }
 
-  .podium-item.p1 .p-pts { font-size: 32px; color: var(--verde-escuro); }
+  .podium-item.p1  .p-pts { font-size: 30px; color: var(--verde-escuro); }
+  .podium-item.p45 .p-pts { font-size: 16px; color: var(--muted); }
 
   .p-pts-label {
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
+    font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted);
   }
 
-  .p-medal { font-size: 18px; margin-bottom: 6px; }
-
-  /* --- CONTROLS --- */
-  .controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-
-  .search-input {
-    flex: 1;
-    min-width: 180px;
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 10px;
-    padding: 11px 16px;
-    color: var(--texto);
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .search-input::placeholder { color: var(--muted); }
-  .search-input:focus { border-color: var(--verde); }
-
-  .btn {
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 10px;
-    color: var(--muted);
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 11px 18px;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .btn:hover { border-color: var(--verde); color: var(--verde-escuro); }
-
-  .btn.primary {
-    background: var(--verde);
-    border-color: var(--verde);
-    color: white;
-  }
-
-  .btn.primary:hover { background: var(--verde-escuro); border-color: var(--verde-escuro); }
-
-  /* --- TABLE HEADER --- */
-  .table-head {
-    display: grid;
-    grid-template-columns: 44px 1fr auto;
-    padding: 0 18px 8px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .table-head .right { text-align: right; }
-
-  /* --- ROWS --- */
-  .ranking-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .row {
-    display: grid;
-    grid-template-columns: 44px 1fr auto;
-    align-items: center;
-    padding: 14px 18px;
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 12px;
-    transition: all 0.18s;
-    animation: fadeSlide 0.45s ease both;
-    cursor: default;
-  }
-
-  .row:hover {
-    border-color: var(--verde);
-    transform: translateX(3px);
-    box-shadow: 0 2px 12px rgba(146,198,143,0.15);
-  }
-
-  @keyframes fadeSlide {
-    from { opacity: 0; transform: translateX(-12px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-
-  .row .pos {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--borda);
-    line-height: 1;
-  }
-
-  .row .info .name {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--texto);
-  }
-
-  .row .info .id-tag {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 1px;
-    font-weight: 300;
-  }
-
-  /* barra de progresso */
-  .progress {
-    height: 3px;
-    background: var(--verde-claro);
-    border-radius: 2px;
-    margin-top: 7px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--verde);
-    border-radius: 2px;
-    transition: width 1s cubic-bezier(.22,.68,0,1.2);
-  }
-
-  .row .pts-wrap { text-align: right; }
-
-  .row .pts {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--texto);
-    line-height: 1;
-  }
-
-  .row .pts-label {
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  /* --- EMPTY --- */
-  .empty {
-    text-align: center;
-    padding: 60px 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  /* --- URL SECTION --- */
-  .url-card {
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 14px;
-    padding: 22px;
-    margin-bottom: 24px;
-    display: none;
-  }
-
-  .url-card label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-
-  .url-row { display: flex; gap: 8px; }
-
-  .url-input {
-    flex: 1;
-    background: var(--fundo);
-    border: 1px solid var(--borda);
-    border-radius: 8px;
-    padding: 10px 14px;
-    color: var(--texto);
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    outline: none;
-  }
-
-  .url-input:focus { border-color: var(--verde); }
-
-  .url-help {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 10px;
-  }
-
-  .url-help a {
-    color: var(--verde-escuro);
-    cursor: pointer;
-    text-decoration: underline;
-  }
-
-
-  /* --- HALL DA FAMA --- */
+  /* ── HALL DA FAMA ── */
   .hall-wrap {
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 16px;
-    padding: 22px 20px 20px;
-    margin-bottom: 24px;
-  }
-  .hall-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .hall-icon {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: rgba(146,198,143,0.15);
-    border: 1px solid var(--borda);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .hall-title {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted);
-  }
-  .hall-date { font-size: 11px; color: var(--borda); margin-left: auto; }
-  .hall-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .hall-chip {
-    display: flex; align-items: center; gap: 7px;
-    background: var(--verde-suave); border: 1px solid var(--borda);
-    border-radius: 40px; padding: 6px 12px 6px 6px;
-    animation: fadeSlide 0.4s ease both;
-  }
-  .hall-avatar {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: rgba(146,198,143,0.25); border: 1px solid var(--verde);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 900; color: var(--verde-escuro);
-  }
-  .hall-name { font-size: 13px; font-weight: 700; color: var(--texto); }
-  .hall-pts { font-size: 11px; color: var(--verde-escuro); font-weight: 700; }
-  .hall-empty { font-size: 13px; color: var(--muted); font-style: italic; padding: 4px 0; }
-  .hall-nav {
-    display: flex; align-items: center; gap: 6px;
-    margin-left: auto;
-  }
-  .hall-nav-btn {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: none; border: 1px solid var(--borda);
-    color: var(--muted); font-size: 14px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; line-height: 1;
-  }
-  .hall-nav-btn:hover { border-color: var(--verde); color: var(--verde-escuro); }
-  .hall-nav-btn:disabled { opacity: 0.3; cursor: default; }
-  .hall-nav-date {
-    font-size: 12px; font-weight: 700;
-    color: var(--texto); min-width: 44px; text-align: center;
-  }
-  .hall-nav-hoje {
-    font-size: 10px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--verde-escuro);
-    font-weight: 700; cursor: pointer; padding: 2px 8px;
-    border: 1px solid var(--verde); border-radius: 20px;
-    background: var(--verde-suave);
-  }
-  /* --- FOOTER --- */
-  .footer {
-    text-align: center;
-    margin-top: 52px;
-    padding-top: 24px;
-    border-top: 1px solid var(--borda);
-  }
-
-  .footer-logo {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-
-  .footer-sub {
-    font-size: 11px;
-    color: #c0d0be;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  /* --- MODAL --- */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(42,60,40,0.5);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    backdrop-filter: blur(3px);
-  }
-
-  .modal {
-    background: var(--branco);
-    border-radius: 18px;
-    padding: 32px;
-    max-width: 500px;
-    width: 100%;
-    position: relative;
-    border: 1px solid var(--borda);
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 16px; right: 20px;
-    background: none; border: none;
-    font-size: 20px; color: var(--muted); cursor: pointer;
-  }
-
-  .modal h2 {
-    font-size: 18px; font-weight: 900;
-    color: var(--texto); margin-bottom: 16px;
-    letter-spacing: 0.04em;
-  }
-
-  .modal p { font-size: 13px; color: #555; line-height: 1.75; margin-bottom: 10px; }
-
-  .modal code {
-    display: block;
-    background: var(--fundo);
-    border: 1px solid var(--borda);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-family: monospace;
-    font-size: 11px;
-    color: var(--verde-escuro);
-    margin: 12px 0;
-    line-height: 1.9;
-    white-space: pre;
-    overflow-x: auto;
-  }
-
-
-  /* --- PÓDIO 4º e 5º --- */
-  .podium-bottom {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 16px;
-    padding: 0 8px 20px;
-  }
-
-  .podium-item.p4, .podium-item.p5 {
-    max-width: 140px;
-    flex: 1;
-  }
-
-  .podium-item.p4 .p-avatar, .podium-item.p5 .p-avatar {
-    width: 44px; height: 44px; font-size: 15px;
-    background: rgba(146,198,143,0.06);
-    border-color: var(--borda);
-    color: var(--muted);
-  }
-
-  .podium-item.p4 .p-name, .podium-item.p5 .p-name {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .podium-item.p4 .p-block, .podium-item.p5 .p-block {
-    height: 36px;
-    background: rgba(146,198,143,0.04);
-    border: 1px solid var(--borda);
-    border-radius: 8px;
-    margin-top: 0;
-  }
-
-  .podium-item.p4 .p-pts, .podium-item.p5 .p-pts {
-    font-size: 18px;
-    color: var(--muted);
-  }
-
-  .podium-item.p4 .p-medal, .podium-item.p5 .p-medal {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  /* --- HALL DA FAMA DESTAQUE --- */
-  .hall-wrap {
-    background: linear-gradient(135deg, rgba(146,198,143,0.12) 0%, rgba(146,198,143,0.04) 100%);
+    background: linear-gradient(135deg, rgba(146,198,143,0.1) 0%, rgba(146,198,143,0.03) 100%);
     border: 2px solid var(--verde);
-    border-radius: 16px;
-    padding: 22px 20px 20px;
+    border-radius: 18px;
+    padding: 22px 20px;
     margin-bottom: 24px;
     position: relative;
   }
@@ -671,160 +255,223 @@
   .hall-wrap::before {
     content: '';
     position: absolute;
-    top: -1px; left: 20px; right: 20px; height: 2px;
+    top: -1px; left: 24px; right: 24px; height: 2px;
     background: linear-gradient(90deg, transparent, var(--verde), transparent);
-    border-radius: 2px;
   }
 
-  .hall-title {
-    font-size: 12px !important;
-    font-weight: 900 !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
-    color: var(--verde-escuro) !important;
+  .hall-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
   }
 
   .hall-icon {
-    background: rgba(146,198,143,0.2) !important;
-    border-color: var(--verde) !important;
-    width: 38px !important; height: 38px !important;
-    font-size: 18px !important;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(146,198,143,0.2);
+    border: 1.5px solid var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
   }
 
-  /* --- LISTA COMPLETA (simples) --- */
-  .lista-section {
-    margin-top: 8px;
+  .hall-title {
+    font-size: 13px; font-weight: 900;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--verde-escuro);
   }
 
-  .lista-header {
-    display: grid;
-    grid-template-columns: 36px 1fr auto;
-    padding: 0 14px 8px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .hall-nav {
+    display: flex; align-items: center; gap: 6px;
+    margin-left: auto;
   }
 
-  .lista-header .right { text-align: right; }
+  .hall-nav-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: none; border: 1px solid var(--borda);
+    color: var(--muted); font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; line-height: 1;
+  }
 
-  .lista-row {
-    display: grid;
-    grid-template-columns: 36px 1fr auto;
-    align-items: center;
-    padding: 10px 14px;
+  .hall-nav-btn:hover:not(:disabled) { border-color: var(--verde); color: var(--verde-escuro); }
+  .hall-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+  .hall-nav-date {
+    font-size: 12px; font-weight: 700;
+    color: var(--texto); min-width: 44px; text-align: center;
+  }
+
+  .hall-hoje-btn {
+    font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--verde-escuro);
+    font-weight: 700; cursor: pointer; padding: 3px 9px;
+    border: 1px solid var(--verde); border-radius: 20px;
+    background: var(--verde-suave);
+  }
+
+  .hall-list {
+    display: flex; flex-wrap: wrap; gap: 8px; min-height: 36px;
+  }
+
+  .hall-chip {
+    display: flex; align-items: center; gap: 7px;
+    background: white; border: 1px solid var(--borda);
+    border-radius: 40px; padding: 6px 12px 6px 6px;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hall-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(146,198,143,0.25); border: 1px solid var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: var(--verde-escuro);
+  }
+
+  .hall-name  { font-size: 13px; font-weight: 700; color: var(--texto); }
+  .hall-check { font-size: 11px; color: var(--verde-escuro); font-weight: 700; margin-left: 2px; }
+
+  .hall-empty {
+    font-size: 13px; color: var(--muted);
+    font-style: italic; padding: 4px 0; width: 100%;
+  }
+
+  /* ── BUSCA ── */
+  .busca-wrap {
     background: var(--branco);
     border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-bottom: 24px;
+  }
+
+  .busca-titulo {
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .busca-row { display: flex; gap: 8px; }
+
+  .busca-input {
+    flex: 1; min-width: 0;
+    background: var(--fundo);
+    border: 1px solid var(--borda);
     border-radius: 10px;
-    margin-bottom: 4px;
-    transition: all 0.15s;
-  }
-
-  .lista-row:hover {
-    border-color: var(--verde);
-    transform: translateX(2px);
-  }
-
-  .lista-row .l-pos {
-    font-size: 13px;
-    font-weight: 900;
-    color: var(--borda);
-  }
-
-  .lista-row .l-nome {
-    font-size: 14px;
-    font-weight: 700;
+    padding: 11px 16px;
     color: var(--texto);
+    font-family: 'Lato', sans-serif;
+    font-size: 15px; outline: none;
+    transition: border-color 0.2s;
   }
 
-  .lista-row .l-id {
-    font-size: 10px;
-    color: var(--muted);
-    font-weight: 300;
+  .busca-input::placeholder { color: var(--muted); }
+  .busca-input:focus { border-color: var(--verde); }
+
+  .busca-btn {
+    background: var(--verde); border: none;
+    border-radius: 10px; color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px; font-weight: 700;
+    padding: 11px 18px; cursor: pointer;
+    white-space: nowrap; flex-shrink: 0;
+    transition: background 0.2s;
   }
 
-  .lista-row .l-pts {
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--texto);
-    text-align: right;
+  .busca-btn:hover { background: var(--verde-escuro); }
+
+  .busca-resultado { margin-top: 16px; display: none; }
+  .busca-resultado.visivel { display: block; }
+
+  .resultado-card {
+    background: var(--verde-suave);
+    border: 1px solid var(--borda);
+    border-radius: 12px; padding: 16px 18px;
+    display: flex; align-items: center; gap: 14px;
   }
 
-  .lista-row .l-pts-label {
-    font-size: 9px;
-    color: var(--muted);
-    text-align: right;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+  .resultado-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(146,198,143,0.25);
+    border: 2px solid var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 900;
+    color: var(--verde-escuro); flex-shrink: 0;
   }
 
-  .lista-section-title {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 0 14px 10px;
-    margin-top: 24px;
+  .resultado-info { flex: 1; min-width: 0; }
+
+  .resultado-nome {
+    font-size: 16px; font-weight: 900; color: var(--texto);
+    margin-bottom: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
 
-  .hidden { display: none !important; }
+  .resultado-id { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+  .resultado-direita { text-align: right; flex-shrink: 0; }
+
+  .resultado-pts-label {
+    font-size: 9px; color: var(--muted);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .resultado-pts {
+    font-size: 28px; font-weight: 900;
+    color: var(--verde-escuro); line-height: 1;
+  }
+
+  .resultado-pos { font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+
+  .busca-nada {
+    margin-top: 12px; font-size: 13px; color: var(--muted);
+    text-align: center; padding: 8px 0; font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--borda);
+  }
+
+  .footer-logo {
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+
+  .footer-sub {
+    font-size: 11px; color: #c0d0be;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+
+  .atualizar-btn {
+    background: none; border: 1px solid var(--borda);
+    border-radius: 8px; color: var(--muted);
+    font-family: 'Lato', sans-serif; font-size: 12px;
+    padding: 6px 14px; cursor: pointer; margin-top: 14px;
+    transition: all 0.2s;
+  }
+
+  .atualizar-btn:hover { border-color: var(--verde); color: var(--verde-escuro); }
 </style>
 </head>
 <body>
-
-<!-- MODAL -->
-<div class="overlay hidden" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="fecharModal()">✕</button>
-    <h2>Conectar ao Google Sheets</h2>
-    <p><strong>1.</strong> No Apps Script da planilha, adicione esta função:</p>
-    <code>function doGet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const abaRank = ss.getSheetByName("Ranking");
-  const abaPont = ss.getSheetByName("Pontuação");
-  const hoje = new Date();
-  const diaHoje = hoje.getDate();
-  const mesHoje = hoje.getMonth();
-  const anoHoje = hoje.getFullYear();
-
-  // Pontos de hoje por ID
-  const ptsDia = {};
-  if (abaPont) {
-    const rows = abaPont.getDataRange().getValues();
-    rows.slice(1).forEach(r => {
-      const carimbo = new Date(r[2]);
-      if (carimbo.getDate()===diaHoje &&
-          carimbo.getMonth()===mesHoje &&
-          carimbo.getFullYear()===anoHoje) {
-        const id = String(r[3]||"").trim();
-        const total = Number(r[9]||0);
-        if (id) ptsDia[id] = (ptsDia[id]||0) + total;
-      }
-    });
-  }
-
-  const dados = abaRank.getDataRange().getValues();
-  const resultado = dados.slice(1).map(r => ({
-    pos: r[0], id: r[1], nome: r[2], pts: r[3],
-    pts_hoje: ptsDia[String(r[1]||"").trim()] || 0
-  }));
-  return ContentService
-    .createTextOutput(JSON.stringify(resultado))
-    .setMimeType(ContentService.MimeType.JSON);
-}</code>
-    <p><strong>2.</strong> Clique em <strong>Implantar → Nova implantação → App da Web</strong></p>
-    <p><strong>3.</strong> Em "Quem tem acesso" selecione <strong>"Qualquer pessoa"</strong> e copie a URL</p>
-    <p><strong>4.</strong> Cole a URL no campo da página e clique em Carregar</p>
-    <button class="btn primary" style="width:100%;margin-top:8px;" onclick="fecharModal()">Entendi!</button>
-  </div>
-</div>
 
 <div class="wrap">
 
   <!-- HEADER -->
   <header class="header">
-    <img class="logo-mark" src="logo.jpg" alt="Victor Afonso Nutricionista" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:1.5px solid var(--borda);background:white;padding:4px;" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex'">
-
+    <img
+      class="logo-mark"
+      src="logo.jpg"
+      alt="Victor Afonso Nutricionista"
+      onerror="this.style.display='none'"
+    >
     <div class="brand-name">Victor Afonso</div>
     <div class="brand-sub">Nutricionista</div>
     <div class="divider"></div>
@@ -838,248 +485,232 @@
     <span id="statusText">Carregando...</span>
   </div>
 
-  <!-- URL CARD -->
-  <div class="url-card" style="display:none!important" id="urlCard">
-    <label>URL da planilha (Apps Script)</label>
-    <div class="url-row">
-      <input type="text" class="url-input" id="apiUrl" placeholder="https://script.google.com/macros/s/...">
-      <button class="btn primary" onclick="carregarUrl()">Carregar</button>
-    </div>
-    <div class="url-help">
-      Não sabe como gerar? <a onclick="abrirModal()">Veja o passo a passo</a>
-    </div>
-  </div>
-
-  <!-- PODIUM -->
-  <div class="podium-wrap" id="podiumWrap">
+  <!-- 1. PÓDIO TOP 5 -->
+  <div class="podium-wrap" id="podiumWrap" style="display:none">
     <div class="podium-label">Pódio</div>
-    <div class="podium" id="podium"></div>
-    <div class="podium-bottom" id="podiumBottom"></div>
+    <div class="podium-top3" id="podiumTop3"></div>
+    <div class="podium-45"   id="podium45"></div>
   </div>
 
-  <!-- CONTROLS -->
-  <div class="controls">
-    <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nome ou ID..." oninput="filtrar()">
-    <button class="btn" onclick="recarregar()">↻ Atualizar</button>
-    <button class="btn" 
+  <!-- 2. HALL DA FAMA -->
+  <div class="hall-wrap" id="hallWrap" style="display:none">
+    <div class="hall-header">
+      <div class="hall-icon">🌟</div>
+      <div class="hall-title">Hall da Fama</div>
+      <div class="hall-nav">
+        <button class="hall-hoje-btn" id="hallHojeBtn" onclick="voltarHoje()" style="display:none">hoje</button>
+        <button class="hall-nav-btn" id="hallPrevBtn" onclick="navegarHall(-1)">‹</button>
+        <span class="hall-nav-date" id="hallNavDate"></span>
+        <button class="hall-nav-btn" id="hallNextBtn" onclick="navegarHall(1)">›</button>
+      </div>
+    </div>
+    <div class="hall-list" id="hallList"></div>
   </div>
 
-  <!-- HALL DA FAMA -->
-  <div id="hallContainer"></div>
-
-  <!-- LISTA COMPLETA -->
-  <div class="lista-section" id="listaSection"></div>
+  <!-- 3. BUSCA INDIVIDUAL -->
+  <div class="busca-wrap">
+    <div class="busca-titulo">Encontre sua pontuação</div>
+    <div class="busca-row">
+      <input
+        type="text"
+        class="busca-input"
+        id="buscaInput"
+        placeholder="Digite seu nome ou ID..."
+        oninput="buscar()"
+        autocomplete="off"
+      >
+      <button class="busca-btn" onclick="buscar()">Buscar</button>
+    </div>
+    <div class="busca-resultado" id="buscaResultado"></div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">Victor Afonso</div>
     <div class="footer-sub">Nutricionista · Ranking oficial</div>
+    <button class="atualizar-btn" onclick="carregar()">↻ Atualizar ranking</button>
   </footer>
 
 </div>
 
 <script>
-  const DEMO = [];
+  const API    = 'https://script.google.com/macros/s/AKfycbxOcTEvrZE-af3C4c1WwzQyP2qCrcuGEmhSChW2xcW1kH7tIti08z9ksUq0ADhly2VlBA/exec';
+  const INICIO = new Date(2025, 3, 13); // 13/04/2025
 
-  let allData = [];
-  let maxPts = 1;
-  let apiUrl = "https://script.google.com/macros/s/AKfycbxOcTEvrZE-af3C4c1WwzQyP2qCrcuGEmhSChW2xcW1kH7tIti08z9ksUq0ADhly2VlBA/exec";
+  let dados    = [];
+  let hallData = new Date();
+  hallData.setHours(0, 0, 0, 0);
 
-  function iniciar() {
-    if (apiUrl) carregarUrl(apiUrl);
-    else {
-      document.getElementById("statusText").textContent = "Aguardando conexão com a planilha...";
-      document.getElementById("urlCard").style.display = "block";
-      document.getElementById("podiumWrap").style.display = "none";
-      document.getElementById("listaSection").innerHTML =
-        '<div class="empty" style="padding:40px 0; color:var(--muted); text-align:center; font-size:14px;">🌿 Aguardando dados da planilha...</div>';
-    }
-  }
-
-  function carregarUrl(url) {
-    const inp = document.getElementById("apiUrl");
-    const u = url || (inp && inp.value.trim());
-    if (!u) { abrirModal(); return; }
-
-    document.getElementById("statusText").textContent = "Carregando...";
-    document.getElementById("urlCard").style.display = "none";
-
-    fetch(u)
+  /* ── CARGA ── */
+  function carregar() {
+    document.getElementById('statusText').textContent = 'Carregando...';
+    fetch(API)
       .then(r => r.json())
-      .then(data => {
-        if (!Array.isArray(data) || !data.length) throw new Error();
-        localStorage.setItem("va_ranking_url", u);
-        apiUrl = u;
-        renderizar(data, false);
+      .then(d => {
+        if (!Array.isArray(d) || !d.length) throw new Error('vazio');
+        dados = d;
+        renderPodio();
+        renderHall();
+        const agora = new Date().toLocaleString('pt-BR');
+        document.getElementById('statusText').textContent = 'Atualizado às ' + agora;
       })
       .catch(() => {
-        document.getElementById("statusText").textContent = "Erro ao carregar. Verifique a URL.";
-        document.getElementById("urlCard").style.display = "block";
-        renderizar(DEMO, true);
+        document.getElementById('statusText').textContent = 'Erro ao carregar. Tente novamente.';
       });
   }
 
-  function renderizar(data, demo) {
-    allData = data;
-    maxPts = Math.max(...data.map(d => +d.pts || 0), 1);
-    const agora = new Date().toLocaleString("pt-BR");
-    document.getElementById("statusText").textContent =
-      demo ? `Demonstração · ${agora}` : `Atualizado às ${agora}`;
-    document.getElementById("podiumWrap").style.display = "block";
-    renderPodium(data.slice(0, 5));
-    renderHallContainer(data);
-    renderListaCompleta(data);
-  }
+  /* ── PÓDIO ── */
+  function renderPodio() {
+    document.getElementById('podiumWrap').style.display = 'block';
 
-  function renderPodium(top) {
-    const el = document.getElementById("podium");
-    const elBottom = document.getElementById("podiumBottom");
-    if (!top.length) { el.innerHTML = ""; elBottom.innerHTML = ""; return; }
+    const top3 = dados.slice(0, 3);
+    const p45  = dados.slice(3, 5);
+    const medals = ['🥇', '🥈', '🥉'];
 
-    const top3 = top.slice(0, 3);
-    const top45 = top.slice(3, 5);
-    const medals = ["🥇","🥈","🥉","4°","5°"];
-
-    // Ordem visual top 3: 2°, 1°, 3°
-    const visual = top3.length >= 2
+    // Ordem visual: 2°, 1°, 3°
+    const ordemVisual = top3.length >= 2
       ? [top3[1], top3[0], top3[2]].filter(Boolean)
       : top3;
-    const vcls = top3.length >= 2 ? ["p2","p1","p3"] : ["p1","p2","p3"];
+    const classes = top3.length >= 2 ? ['p2', 'p1', 'p3'] : ['p1', 'p2', 'p3'];
 
-    el.innerHTML = visual.map((item, i) => {
+    document.getElementById('podiumTop3').innerHTML = ordemVisual.map((item, i) => {
       const idx = top3.indexOf(item);
-      const ini = iniciais(item.nome || item.id);
-      return `
-        <div class="podium-item ${vcls[i]}">
-          <div class="p-medal">${medals[idx]}</div>
-          <div class="p-avatar">${ini}</div>
-          <div class="p-name">${item.nome || item.id}</div>
-          <div class="p-id">${item.nome ? item.id : ""}</div>
-          <div class="p-block">
-            <div class="p-pts">${item.pts}</div>
-            <div class="p-pts-label">pts</div>
-          </div>
-        </div>`;
-    }).join("");
+      return itemPodio(item, classes[i], medals[idx]);
+    }).join('');
 
-    // 4° e 5°
-    elBottom.innerHTML = top45.map((item, i) => {
-      const pos = i + 4;
-      const ini = iniciais(item.nome || item.id);
-      return `
-        <div class="podium-item p${pos}" style="animation-delay:${0.35 + i*0.1}s; animation: riseUp 0.6s cubic-bezier(.22,.68,0,1.15) both;">
-          <div class="p-medal">${medals[pos-1]}</div>
-          <div class="p-avatar">${ini}</div>
-          <div class="p-name">${item.nome || item.id}</div>
-          <div class="p-id">${item.nome ? item.id : ""}</div>
-          <div class="p-block">
-            <div class="p-pts">${item.pts}</div>
-            <div class="p-pts-label">pts</div>
-          </div>
-        </div>`;
-    }).join("");
+    document.getElementById('podium45').innerHTML = p45.map((item, i) =>
+      itemPodio(item, 'p45', (i + 4) + 'º')
+    ).join('');
   }
 
-
-
-  function filtrar() {
-    const q = document.getElementById("searchInput").value.toLowerCase();
-    const f = allData.filter(d =>
-      (d.nome||"").toLowerCase().includes(q) ||
-      String(d.id||"").toLowerCase().includes(q)
-    );
-    renderPodium(f.slice(0, 5));
-    renderHallContainer(f);
-    renderListaCompleta(f);
-  }
-
-  function recarregar() {
-    if (apiUrl) carregarUrl(apiUrl);
-    else renderizar(DEMO, true);
-  }
-
-
-  // Data selecionada no hall (começa com hoje)
-  let hallDataSelecionada = new Date();
-  hallDataSelecionada.setHours(0,0,0,0);
-
-  // Data de início do desafio
-  const INICIO_DESAFIO = new Date(2025, 3, 13); // 13/04/2025
-
-  function renderHallInline(el, data) {
-    const hoje = new Date(); hoje.setHours(0,0,0,0);
-    const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
-    const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"});
-
-    // Filtra participantes com 2 pts no dia selecionado
-    const perfeitosDia = data.filter(d => {
-      if (eHoje) return +d.pts_hoje === 2;
-      // Para dias anteriores, usar pts_por_dia se disponível
-      const key = dataFmt.replace("/","_");
-      return d.pts_por_dia && +d.pts_por_dia[key] === 2;
-    });
-
-    const chips = perfeitosDia.length
-      ? perfeitosDia.map((item, i) => {
-          const ini = iniciais(item.nome || item.id);
-          const delay = (i * 0.06).toFixed(2);
-          return `<div class="hall-chip" style="animation-delay:${delay}s">
-            <div class="hall-avatar">${ini}</div>
-            <span class="hall-name">${item.nome || item.id}</span>
-            <span class="hall-pts">2/2 ✓</span>
-          </div>`;
-        }).join("")
-      : `<div class="hall-empty">${eHoje ? "Nenhum com 2/2 pontos hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
-
-    const podeVoltar = hallDataSelecionada > INICIO_DESAFIO;
-    const podeAvancar = !eHoje;
-
-    el.innerHTML = `
-      <div class="hall-wrap" style="display:block; margin-top:8px;" id="hallWrapInline">
-        <div class="hall-header">
-          <div class="hall-icon">🌟</div>
-          <div class="hall-title">Hall da Fama</div>
-          <div class="hall-nav">
-            ${!eHoje ? `<button class="hall-nav-hoje" onclick="voltarHoje()">hoje</button>` : ""}
-            <button class="hall-nav-btn" onclick="navegarHall(-1)" ${podeVoltar ? "" : "disabled"}>‹</button>
-            <span class="hall-nav-date">${dataFmt}</span>
-            <button class="hall-nav-btn" onclick="navegarHall(1)" ${podeAvancar ? "" : "disabled"}>›</button>
-          </div>
+  function itemPodio(item, cls, medalha) {
+    const ini = iniciais(item.nome || item.id);
+    return `
+      <div class="podium-item ${cls}">
+        <div class="p-medal">${medalha}</div>
+        <div class="p-avatar">${ini}</div>
+        <div class="p-name">${item.nome || item.id}</div>
+        <div class="p-id">${item.nome ? item.id : ''}</div>
+        <div class="p-block">
+          <div class="p-pts">${item.pts}</div>
+          <div class="p-pts-label">pts</div>
         </div>
-        <div class="hall-list" id="hallChips">${chips}</div>
       </div>`;
   }
 
+  /* ── HALL DA FAMA ── */
+  function renderHall() {
+    const wrap     = document.getElementById('hallWrap');
+    const list     = document.getElementById('hallList');
+    const dateEl   = document.getElementById('hallNavDate');
+    const prevBtn  = document.getElementById('hallPrevBtn');
+    const nextBtn  = document.getElementById('hallNextBtn');
+    const hojeBtn  = document.getElementById('hallHojeBtn');
+
+    wrap.style.display = 'block';
+
+    const hoje  = new Date(); hoje.setHours(0, 0, 0, 0);
+    const eHoje = hallData.getTime() === hoje.getTime();
+    const dataFmt = hallData.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
+    dateEl.textContent    = dataFmt;
+    prevBtn.disabled      = hallData <= INICIO;
+    nextBtn.disabled      = eHoje;
+    hojeBtn.style.display = eHoje ? 'none' : 'inline-block';
+
+    const perfeitos = dados.filter(d => {
+      if (eHoje) return +d.pts_hoje === 2;
+      const key = dataFmt.replace('/', '_');
+      return d.pts_por_dia && +d.pts_por_dia[key] === 2;
+    });
+
+    if (!perfeitos.length) {
+      list.innerHTML = `<div class="hall-empty">${
+        eHoje
+          ? 'Nenhum participante com pontuação máxima hoje ainda 🌱'
+          : 'Nenhum registro para este dia 📋'
+      }</div>`;
+      return;
+    }
+
+    list.innerHTML = perfeitos.map((item, i) => {
+      const ini   = iniciais(item.nome || item.id);
+      const delay = (i * 0.06).toFixed(2);
+      return `
+        <div class="hall-chip" style="animation-delay:${delay}s">
+          <div class="hall-avatar">${ini}</div>
+          <span class="hall-name">${item.nome || item.id}</span>
+          <span class="hall-check">2/2 ✓</span>
+        </div>`;
+    }).join('');
+  }
+
   function navegarHall(delta) {
-    const nova = new Date(hallDataSelecionada);
+    const nova  = new Date(hallData);
     nova.setDate(nova.getDate() + delta);
-    const hoje = new Date(); hoje.setHours(0,0,0,0);
-    if (nova > hoje) return;
-    if (nova < INICIO_DESAFIO) return;
-    hallDataSelecionada = nova;
-    renderHallContainer(allData);
+    const hoje  = new Date(); hoje.setHours(0, 0, 0, 0);
+    if (nova > hoje || nova < INICIO) return;
+    hallData = nova;
+    renderHall();
   }
 
   function voltarHoje() {
-    hallDataSelecionada = new Date(); hallDataSelecionada.setHours(0,0,0,0);
-    renderHallContainer(allData);
+    hallData = new Date(); hallData.setHours(0, 0, 0, 0);
+    renderHall();
   }
+
+  /* ── BUSCA ── */
+  function buscar() {
+    const q  = document.getElementById('buscaInput').value.trim().toLowerCase();
+    const el = document.getElementById('buscaResultado');
+
+    if (!q) {
+      el.classList.remove('visivel');
+      el.innerHTML = '';
+      return;
+    }
+
+    const achou = dados.find(d =>
+      (d.nome || '').toLowerCase().includes(q) ||
+      String(d.id || '').toLowerCase() === q
+    );
+
+    el.classList.add('visivel');
+
+    if (!achou) {
+      el.innerHTML = '<div class="busca-nada">Não encontramos seu nome. Confira se digitou corretamente 🌿</div>';
+      return;
+    }
+
+    const ini = iniciais(achou.nome || achou.id);
+    el.innerHTML = `
+      <div class="resultado-card">
+        <div class="resultado-avatar">${ini}</div>
+        <div class="resultado-info">
+          <div class="resultado-nome">${achou.nome || achou.id}</div>
+          <div class="resultado-id">ID ${achou.id}</div>
+        </div>
+        <div class="resultado-direita">
+          <div class="resultado-pts-label">pontos</div>
+          <div class="resultado-pts">${achou.pts}</div>
+          <div class="resultado-pos">${achou.pos ? achou.pos + 'º lugar' : ''}</div>
+        </div>
+      </div>`;
+  }
+
+  /* ── UTILITÁRIOS ── */
   function iniciais(txt) {
-    if (!txt) return "?";
-    const p = txt.trim().split(" ");
-    return p.length >= 2 ? (p[0][0]+p[1][0]).toUpperCase() : txt.slice(0,2).toUpperCase();
+    if (!txt) return '?';
+    const p = txt.trim().split(' ');
+    return p.length >= 2
+      ? (p[0][0] + p[1][0]).toUpperCase()
+      : txt.slice(0, 2).toUpperCase();
   }
 
-  function abrirModal() { document.getElementById("modal").classList.remove("hidden"); }
-  function fecharModal() {
-    document.getElementById("modal").classList.add("hidden");
-    document.getElementById("urlCard").style.display = "block";
-  }
+  // Atualização automática a cada 5 minutos
+  setInterval(carregar, 5 * 60 * 1000);
 
-  // Auto-refresh 5 min
-  setInterval(() => { if (apiUrl) carregarUrl(apiUrl); }, 5 * 60 * 1000);
-
-  iniciar();
+  carregar();
 </script>
 </body>
 </html>
