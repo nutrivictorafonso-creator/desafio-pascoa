@@ -613,6 +613,160 @@
     overflow-x: auto;
   }
 
+
+  /* --- PÓDIO 4º e 5º --- */
+  .podium-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 0 8px 20px;
+  }
+
+  .podium-item.p4, .podium-item.p5 {
+    max-width: 140px;
+    flex: 1;
+  }
+
+  .podium-item.p4 .p-avatar, .podium-item.p5 .p-avatar {
+    width: 44px; height: 44px; font-size: 15px;
+    background: rgba(146,198,143,0.06);
+    border-color: var(--borda);
+    color: var(--muted);
+  }
+
+  .podium-item.p4 .p-name, .podium-item.p5 .p-name {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .podium-item.p4 .p-block, .podium-item.p5 .p-block {
+    height: 36px;
+    background: rgba(146,198,143,0.04);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    margin-top: 0;
+  }
+
+  .podium-item.p4 .p-pts, .podium-item.p5 .p-pts {
+    font-size: 18px;
+    color: var(--muted);
+  }
+
+  .podium-item.p4 .p-medal, .podium-item.p5 .p-medal {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  /* --- HALL DA FAMA DESTAQUE --- */
+  .hall-wrap {
+    background: linear-gradient(135deg, rgba(146,198,143,0.12) 0%, rgba(146,198,143,0.04) 100%);
+    border: 2px solid var(--verde);
+    border-radius: 16px;
+    padding: 22px 20px 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hall-wrap::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 20px; right: 20px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--verde), transparent);
+    border-radius: 2px;
+  }
+
+  .hall-title {
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--verde-escuro) !important;
+  }
+
+  .hall-icon {
+    background: rgba(146,198,143,0.2) !important;
+    border-color: var(--verde) !important;
+    width: 38px !important; height: 38px !important;
+    font-size: 18px !important;
+  }
+
+  /* --- LISTA COMPLETA (simples) --- */
+  .lista-section {
+    margin-top: 8px;
+  }
+
+  .lista-header {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    padding: 0 14px 8px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .lista-header .right { text-align: right; }
+
+  .lista-row {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    transition: all 0.15s;
+  }
+
+  .lista-row:hover {
+    border-color: var(--verde);
+    transform: translateX(2px);
+  }
+
+  .lista-row .l-pos {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--borda);
+  }
+
+  .lista-row .l-nome {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto);
+  }
+
+  .lista-row .l-id {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .lista-row .l-pts {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--texto);
+    text-align: right;
+  }
+
+  .lista-row .l-pts-label {
+    font-size: 9px;
+    color: var(--muted);
+    text-align: right;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .lista-section-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 14px 10px;
+    margin-top: 24px;
+  }
+
   .hidden { display: none !important; }
 </style>
 </head>
@@ -700,6 +854,7 @@
   <div class="podium-wrap" id="podiumWrap">
     <div class="podium-label">Pódio</div>
     <div class="podium" id="podium"></div>
+    <div class="podium-bottom" id="podiumBottom"></div>
   </div>
 
   <!-- CONTROLS -->
@@ -709,14 +864,11 @@
     <button class="btn" 
   </div>
 
-  <!-- TABLE -->
-  <div class="table-head">
-    <span>#</span>
-    <span>Participante</span>
-    <span class="right">Pontos</span>
-  </div>
+  <!-- HALL DA FAMA -->
+  <div id="hallContainer"></div>
 
-  <div class="ranking-list" id="rankingList"></div>
+  <!-- LISTA COMPLETA -->
+  <div class="lista-section" id="listaSection"></div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -739,8 +891,8 @@
       document.getElementById("statusText").textContent = "Aguardando conexão com a planilha...";
       document.getElementById("urlCard").style.display = "block";
       document.getElementById("podiumWrap").style.display = "none";
-      document.getElementById("rankingList").innerHTML =
-        '<div class="empty" style="padding:60px 0; color:var(--muted); text-align:center; font-size:14px;">🌿 Cole a URL da planilha acima para ver o ranking ao vivo</div>';
+      document.getElementById("listaSection").innerHTML =
+        '<div class="empty" style="padding:40px 0; color:var(--muted); text-align:center; font-size:14px;">🌿 Aguardando dados da planilha...</div>';
     }
   }
 
@@ -774,25 +926,28 @@
     document.getElementById("statusText").textContent =
       demo ? `Demonstração · ${agora}` : `Atualizado às ${agora}`;
     document.getElementById("podiumWrap").style.display = "block";
-    renderPodium(data.slice(0,3));
-    renderLista(data.slice(3));
+    renderPodium(data.slice(0, 5));
+    renderHallContainer(data);
+    renderListaCompleta(data);
   }
 
   function renderPodium(top) {
     const el = document.getElementById("podium");
-    if (!top.length) { el.innerHTML = ""; return; }
-    const medals = ["🥇","🥈","🥉"];
-    const cls    = ["p1","p2","p3"];
-    // ordem visual: 2°, 1°, 3°
-    const visual = top.length >= 2
-      ? [top[1], top[0], top[2]].filter(Boolean)
-      : top;
-    const vcls = top.length >= 2
-      ? ["p2","p1","p3"]
-      : cls;
+    const elBottom = document.getElementById("podiumBottom");
+    if (!top.length) { el.innerHTML = ""; elBottom.innerHTML = ""; return; }
+
+    const top3 = top.slice(0, 3);
+    const top45 = top.slice(3, 5);
+    const medals = ["🥇","🥈","🥉","4°","5°"];
+
+    // Ordem visual top 3: 2°, 1°, 3°
+    const visual = top3.length >= 2
+      ? [top3[1], top3[0], top3[2]].filter(Boolean)
+      : top3;
+    const vcls = top3.length >= 2 ? ["p2","p1","p3"] : ["p1","p2","p3"];
 
     el.innerHTML = visual.map((item, i) => {
-      const idx = top.indexOf(item);
+      const idx = top3.indexOf(item);
       const ini = iniciais(item.nome || item.id);
       return `
         <div class="podium-item ${vcls[i]}">
@@ -806,38 +961,26 @@
           </div>
         </div>`;
     }).join("");
-  }
 
-  function renderLista(data) {
-    const el = document.getElementById("rankingList");
-
-    // Monta a lista (vazia se não há itens além do pódio)
-    const listaHTML = data.map((item, i) => {
-      const pct = Math.round((+item.pts / maxPts) * 100);
-      const delay = (i * 0.035).toFixed(2);
+    // 4° e 5°
+    elBottom.innerHTML = top45.map((item, i) => {
+      const pos = i + 4;
+      const ini = iniciais(item.nome || item.id);
       return `
-        <div class="row" style="animation-delay:${delay}s">
-          <div class="pos">${item.pos || i+4}</div>
-          <div class="info">
-            <div class="name">${item.nome || item.id}</div>
-            <div class="id-tag">${item.nome ? item.id : ""}</div>
-            <div class="progress">
-              <div class="progress-fill" style="width:${pct}%"></div>
-            </div>
-          </div>
-          <div class="pts-wrap">
-            <div class="pts">${item.pts}</div>
-            <div class="pts-label">pts</div>
+        <div class="podium-item p${pos}" style="animation-delay:${0.35 + i*0.1}s; animation: riseUp 0.6s cubic-bezier(.22,.68,0,1.15) both;">
+          <div class="p-medal">${medals[pos-1]}</div>
+          <div class="p-avatar">${ini}</div>
+          <div class="p-name">${item.nome || item.id}</div>
+          <div class="p-id">${item.nome ? item.id : ""}</div>
+          <div class="p-block">
+            <div class="p-pts">${item.pts}</div>
+            <div class="p-pts-label">pts</div>
           </div>
         </div>`;
     }).join("");
-
-    // Monta o Hall da Fama
-    const hallHTML = buildHallHTML(allData);
-
-    // Sempre mostra: lista (se houver) + Hall da Fama
-    el.innerHTML = listaHTML + hallHTML;
   }
+
+
 
   function filtrar() {
     const q = document.getElementById("searchInput").value.toLowerCase();
@@ -845,8 +988,9 @@
       (d.nome||"").toLowerCase().includes(q) ||
       String(d.id||"").toLowerCase().includes(q)
     );
-    renderPodium(f.slice(0,3));
-    renderLista(f.slice(3));
+    renderPodium(f.slice(0, 5));
+    renderHallContainer(f);
+    renderListaCompleta(f);
   }
 
   function recarregar() {
@@ -862,13 +1006,15 @@
   // Data de início do desafio
   const INICIO_DESAFIO = new Date(2025, 3, 13); // 13/04/2025
 
-  function buildHallHTML(data) {
+  function renderHallInline(el, data) {
     const hoje = new Date(); hoje.setHours(0,0,0,0);
     const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
     const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"});
 
+    // Filtra participantes com 2 pts no dia selecionado
     const perfeitosDia = data.filter(d => {
       if (eHoje) return +d.pts_hoje === 2;
+      // Para dias anteriores, usar pts_por_dia se disponível
       const key = dataFmt.replace("/","_");
       return d.pts_por_dia && +d.pts_por_dia[key] === 2;
     });
@@ -883,12 +1029,12 @@
             <span class="hall-pts">2/2 ✓</span>
           </div>`;
         }).join("")
-      : `<div class="hall-empty">${eHoje ? "Nenhum participante com pontuação máxima hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
+      : `<div class="hall-empty">${eHoje ? "Nenhum com 2/2 pontos hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
 
     const podeVoltar = hallDataSelecionada > INICIO_DESAFIO;
     const podeAvancar = !eHoje;
 
-    return `
+    el.innerHTML = `
       <div class="hall-wrap" style="display:block; margin-top:8px;" id="hallWrapInline">
         <div class="hall-header">
           <div class="hall-icon">🌟</div>
@@ -904,10 +1050,6 @@
       </div>`;
   }
 
-  function renderHallInline(el, data) {
-    el.innerHTML = buildHallHTML(data);
-  }
-
   function navegarHall(delta) {
     const nova = new Date(hallDataSelecionada);
     nova.setDate(nova.getDate() + delta);
@@ -915,13 +1057,12 @@
     if (nova > hoje) return;
     if (nova < INICIO_DESAFIO) return;
     hallDataSelecionada = nova;
-    // Rerenderiza a lista inteira para atualizar o hall
-    renderLista(allData.slice(3));
+    renderHallContainer(allData);
   }
 
   function voltarHoje() {
     hallDataSelecionada = new Date(); hallDataSelecionada.setHours(0,0,0,0);
-    renderLista(allData.slice(3));
+    renderHallContainer(allData);
   }
   function iniciais(txt) {
     if (!txt) return "?";
