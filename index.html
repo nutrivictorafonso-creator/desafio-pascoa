@@ -593,7 +593,7 @@
   </div>
 
   <!-- URL CARD -->
-  <div class="url-card" id="urlCard">
+  <div class="url-card" style="display:none!important" id="urlCard">
     <label>URL da planilha (Apps Script)</label>
     <div class="url-row">
       <input type="text" class="url-input" id="apiUrl" placeholder="https://script.google.com/macros/s/...">
@@ -614,7 +614,7 @@
   <div class="controls">
     <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nome ou ID..." oninput="filtrar()">
     <button class="btn" onclick="recarregar()">↻ Atualizar</button>
-    <button class="btn" onclick="abrirModal()">? Ajuda</button>
+    <button class="btn" 
   </div>
 
   <!-- TABLE -->
@@ -639,7 +639,7 @@
 
   let allData = [];
   let maxPts = 1;
-  let apiUrl = localStorage.getItem("va_ranking_url") || "";
+  let apiUrl = "https://script.google.com/macros/s/AKfycbxOcTEvrZE-af3C4c1WwzQyP2qCrcuGEmhSChW2xcW1kH7tIti08z9ksUq0ADhly2VlBA/exec";
 
   function iniciar() {
     if (apiUrl) carregarUrl(apiUrl);
