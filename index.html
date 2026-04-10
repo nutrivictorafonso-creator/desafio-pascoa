@@ -810,11 +810,9 @@
 
   function renderLista(data) {
     const el = document.getElementById("rankingList");
-    if (!data.length) {
-      renderHallInline(el, allData);
-      return;
-    }
-    el.innerHTML = data.map((item, i) => {
+
+    // Monta a lista (vazia se não há itens além do pódio)
+    const listaHTML = data.map((item, i) => {
       const pct = Math.round((+item.pts / maxPts) * 100);
       const delay = (i * 0.035).toFixed(2);
       return `
@@ -833,6 +831,12 @@
           </div>
         </div>`;
     }).join("");
+
+    // Monta o Hall da Fama
+    const hallHTML = buildHallHTML(allData);
+
+    // Sempre mostra: lista (se houver) + Hall da Fama
+    el.innerHTML = listaHTML + hallHTML;
   }
 
   function filtrar() {
@@ -851,8 +855,6 @@
   }
 
 
-  function renderHall(data) {}
-
   // Data selecionada no hall (começa com hoje)
   let hallDataSelecionada = new Date();
   hallDataSelecionada.setHours(0,0,0,0);
@@ -860,15 +862,13 @@
   // Data de início do desafio
   const INICIO_DESAFIO = new Date(2025, 3, 13); // 13/04/2025
 
-  function renderHallInline(el, data) {
+  function buildHallHTML(data) {
     const hoje = new Date(); hoje.setHours(0,0,0,0);
     const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
     const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"});
 
-    // Filtra participantes com 2 pts no dia selecionado
     const perfeitosDia = data.filter(d => {
       if (eHoje) return +d.pts_hoje === 2;
-      // Para dias anteriores, usar pts_por_dia se disponível
       const key = dataFmt.replace("/","_");
       return d.pts_por_dia && +d.pts_por_dia[key] === 2;
     });
@@ -883,12 +883,12 @@
             <span class="hall-pts">2/2 ✓</span>
           </div>`;
         }).join("")
-      : `<div class="hall-empty">${eHoje ? "Nenhum com 2/2 pontos hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
+      : `<div class="hall-empty">${eHoje ? "Nenhum participante com pontuação máxima hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
 
     const podeVoltar = hallDataSelecionada > INICIO_DESAFIO;
     const podeAvancar = !eHoje;
 
-    el.innerHTML = `
+    return `
       <div class="hall-wrap" style="display:block; margin-top:8px;" id="hallWrapInline">
         <div class="hall-header">
           <div class="hall-icon">🌟</div>
@@ -904,6 +904,10 @@
       </div>`;
   }
 
+  function renderHallInline(el, data) {
+    el.innerHTML = buildHallHTML(data);
+  }
+
   function navegarHall(delta) {
     const nova = new Date(hallDataSelecionada);
     nova.setDate(nova.getDate() + delta);
@@ -911,14 +915,13 @@
     if (nova > hoje) return;
     if (nova < INICIO_DESAFIO) return;
     hallDataSelecionada = nova;
-    const el = document.getElementById("rankingList");
-    if (el) renderHallInline(el, allData);
+    // Rerenderiza a lista inteira para atualizar o hall
+    renderLista(allData.slice(3));
   }
 
   function voltarHoje() {
     hallDataSelecionada = new Date(); hallDataSelecionada.setHours(0,0,0,0);
-    const el = document.getElementById("rankingList");
-    if (el) renderHallInline(el, allData);
+    renderLista(allData.slice(3));
   }
   function iniciais(txt) {
     if (!txt) return "?";
