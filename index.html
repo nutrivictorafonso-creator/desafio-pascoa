@@ -467,6 +467,75 @@
     text-decoration: underline;
   }
 
+
+  /* --- HALL DA FAMA --- */
+  .hall-wrap {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 22px 20px 20px;
+    margin-bottom: 24px;
+  }
+  .hall-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .hall-icon {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(146,198,143,0.15);
+    border: 1px solid var(--borda);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .hall-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hall-date { font-size: 11px; color: var(--borda); margin-left: auto; }
+  .hall-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hall-chip {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--verde-suave); border: 1px solid var(--borda);
+    border-radius: 40px; padding: 6px 12px 6px 6px;
+    animation: fadeSlide 0.4s ease both;
+  }
+  .hall-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(146,198,143,0.25); border: 1px solid var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 900; color: var(--verde-escuro);
+  }
+  .hall-name { font-size: 13px; font-weight: 700; color: var(--texto); }
+  .hall-pts { font-size: 11px; color: var(--verde-escuro); font-weight: 700; }
+  .hall-empty { font-size: 13px; color: var(--muted); font-style: italic; padding: 4px 0; }
+  .hall-nav {
+    display: flex; align-items: center; gap: 6px;
+    margin-left: auto;
+  }
+  .hall-nav-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: none; border: 1px solid var(--borda);
+    color: var(--muted); font-size: 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; line-height: 1;
+  }
+  .hall-nav-btn:hover { border-color: var(--verde); color: var(--verde-escuro); }
+  .hall-nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .hall-nav-date {
+    font-size: 12px; font-weight: 700;
+    color: var(--texto); min-width: 44px; text-align: center;
+  }
+  .hall-nav-hoje {
+    font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--verde-escuro);
+    font-weight: 700; cursor: pointer; padding: 2px 8px;
+    border: 1px solid var(--verde); border-radius: 20px;
+    background: var(--verde-suave);
+  }
   /* --- FOOTER --- */
   .footer {
     text-align: center;
@@ -557,10 +626,33 @@
     <p><strong>1.</strong> No Apps Script da planilha, adicione esta função:</p>
     <code>function doGet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const aba = ss.getSheetByName("Ranking");
-  const dados = aba.getDataRange().getValues();
+  const abaRank = ss.getSheetByName("Ranking");
+  const abaPont = ss.getSheetByName("Pontuação");
+  const hoje = new Date();
+  const diaHoje = hoje.getDate();
+  const mesHoje = hoje.getMonth();
+  const anoHoje = hoje.getFullYear();
+
+  // Pontos de hoje por ID
+  const ptsDia = {};
+  if (abaPont) {
+    const rows = abaPont.getDataRange().getValues();
+    rows.slice(1).forEach(r => {
+      const carimbo = new Date(r[2]);
+      if (carimbo.getDate()===diaHoje &&
+          carimbo.getMonth()===mesHoje &&
+          carimbo.getFullYear()===anoHoje) {
+        const id = String(r[3]||"").trim();
+        const total = Number(r[9]||0);
+        if (id) ptsDia[id] = (ptsDia[id]||0) + total;
+      }
+    });
+  }
+
+  const dados = abaRank.getDataRange().getValues();
   const resultado = dados.slice(1).map(r => ({
-    pos: r[0], id: r[1], nome: r[2], pts: r[3]
+    pos: r[0], id: r[1], nome: r[2], pts: r[3],
+    pts_hoje: ptsDia[String(r[1]||"").trim()] || 0
   }));
   return ContentService
     .createTextOutput(JSON.stringify(resultado))
@@ -719,7 +811,7 @@
   function renderLista(data) {
     const el = document.getElementById("rankingList");
     if (!data.length) {
-      el.innerHTML = '<div class="empty">Nenhum resultado encontrado</div>';
+      renderHallInline(el, allData);
       return;
     }
     el.innerHTML = data.map((item, i) => {
@@ -758,6 +850,76 @@
     else renderizar(DEMO, true);
   }
 
+
+  function renderHall(data) {}
+
+  // Data selecionada no hall (começa com hoje)
+  let hallDataSelecionada = new Date();
+  hallDataSelecionada.setHours(0,0,0,0);
+
+  // Data de início do desafio
+  const INICIO_DESAFIO = new Date(2025, 3, 13); // 13/04/2025
+
+  function renderHallInline(el, data) {
+    const hoje = new Date(); hoje.setHours(0,0,0,0);
+    const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
+    const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"});
+
+    // Filtra participantes com 2 pts no dia selecionado
+    const perfeitosDia = data.filter(d => {
+      if (eHoje) return +d.pts_hoje === 2;
+      // Para dias anteriores, usar pts_por_dia se disponível
+      const key = dataFmt.replace("/","_");
+      return d.pts_por_dia && +d.pts_por_dia[key] === 2;
+    });
+
+    const chips = perfeitosDia.length
+      ? perfeitosDia.map((item, i) => {
+          const ini = iniciais(item.nome || item.id);
+          const delay = (i * 0.06).toFixed(2);
+          return `<div class="hall-chip" style="animation-delay:${delay}s">
+            <div class="hall-avatar">${ini}</div>
+            <span class="hall-name">${item.nome || item.id}</span>
+            <span class="hall-pts">2/2 ✓</span>
+          </div>`;
+        }).join("")
+      : `<div class="hall-empty">${eHoje ? "Nenhum com 2/2 pontos hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
+
+    const podeVoltar = hallDataSelecionada > INICIO_DESAFIO;
+    const podeAvancar = !eHoje;
+
+    el.innerHTML = `
+      <div class="hall-wrap" style="display:block; margin-top:8px;" id="hallWrapInline">
+        <div class="hall-header">
+          <div class="hall-icon">🌟</div>
+          <div class="hall-title">Hall da Fama</div>
+          <div class="hall-nav">
+            ${!eHoje ? `<button class="hall-nav-hoje" onclick="voltarHoje()">hoje</button>` : ""}
+            <button class="hall-nav-btn" onclick="navegarHall(-1)" ${podeVoltar ? "" : "disabled"}>‹</button>
+            <span class="hall-nav-date">${dataFmt}</span>
+            <button class="hall-nav-btn" onclick="navegarHall(1)" ${podeAvancar ? "" : "disabled"}>›</button>
+          </div>
+        </div>
+        <div class="hall-list" id="hallChips">${chips}</div>
+      </div>`;
+  }
+
+  function navegarHall(delta) {
+    const nova = new Date(hallDataSelecionada);
+    nova.setDate(nova.getDate() + delta);
+    const hoje = new Date(); hoje.setHours(0,0,0,0);
+    if (nova > hoje) return;
+    if (nova < INICIO_DESAFIO) return;
+    hallDataSelecionada = nova;
+    const el = document.getElementById("rankingList");
+    if (el) renderHallInline(el, allData);
+  }
+
+  function voltarHoje() {
+    hallDataSelecionada = new Date(); hallDataSelecionada.setHours(0,0,0,0);
+    const el = document.getElementById("rankingList");
+    if (el) renderHallInline(el, allData);
+  }
   function iniciais(txt) {
     if (!txt) return "?";
     const p = txt.trim().split(" ");
