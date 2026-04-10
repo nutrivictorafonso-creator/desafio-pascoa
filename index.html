@@ -30,7 +30,6 @@
     min-height: 100vh;
   }
 
-  /* --- FUNDO DECORATIVO --- */
   body::before {
     content: '';
     position: fixed;
@@ -61,17 +60,30 @@
     padding: 48px 24px 80px;
   }
 
-  /* --- HEADER --- */
   .header {
     text-align: center;
     margin-bottom: 44px;
   }
 
-  /* Logo SVG inline — iniciais VA estilizadas */
   .logo-mark {
     width: 72px;
     height: 72px;
     margin: 0 auto 16px;
+  }
+
+  .logo-fallback {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--borda);
+    background: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--verde-escuro);
   }
 
   .brand-name {
@@ -115,7 +127,6 @@
     font-weight: 300;
   }
 
-  /* --- STATUS --- */
   .status-bar {
     display: flex;
     align-items: center;
@@ -138,7 +149,6 @@
     50% { opacity: 0.4; transform: scale(0.8); }
   }
 
-  /* --- PODIUM --- */
   .podium-wrap {
     background: var(--branco);
     border: 1px solid var(--borda);
@@ -265,7 +275,6 @@
 
   .p-medal { font-size: 18px; margin-bottom: 6px; }
 
-  /* --- CONTROLS --- */
   .controls {
     display: flex;
     gap: 10px;
@@ -314,7 +323,6 @@
 
   .btn.primary:hover { background: var(--verde-escuro); border-color: var(--verde-escuro); }
 
-  /* --- TABLE HEADER --- */
   .table-head {
     display: grid;
     grid-template-columns: 44px 1fr auto;
@@ -327,7 +335,6 @@
 
   .table-head .right { text-align: right; }
 
-  /* --- ROWS --- */
   .ranking-list {
     display: flex;
     flex-direction: column;
@@ -378,7 +385,6 @@
     font-weight: 300;
   }
 
-  /* barra de progresso */
   .progress {
     height: 3px;
     background: var(--verde-claro);
@@ -411,7 +417,6 @@
     font-weight: 400;
   }
 
-  /* --- EMPTY --- */
   .empty {
     text-align: center;
     padding: 60px 0;
@@ -419,7 +424,6 @@
     font-size: 14px;
   }
 
-  /* --- URL SECTION --- */
   .url-card {
     background: var(--branco);
     border: 1px solid var(--borda);
@@ -467,8 +471,6 @@
     text-decoration: underline;
   }
 
-
-  /* --- HALL DA FAMA --- */
   .hall-wrap {
     background: var(--branco);
     border: 1px solid var(--borda);
@@ -476,12 +478,14 @@
     padding: 22px 20px 20px;
     margin-bottom: 24px;
   }
+
   .hall-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 16px;
   }
+
   .hall-icon {
     width: 34px; height: 34px;
     border-radius: 50%;
@@ -490,32 +494,40 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 16px;
   }
+
   .hall-title {
     font-size: 11px; font-weight: 700;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--muted);
   }
+
   .hall-date { font-size: 11px; color: var(--borda); margin-left: auto; }
+
   .hall-list { display: flex; flex-wrap: wrap; gap: 8px; }
+
   .hall-chip {
     display: flex; align-items: center; gap: 7px;
     background: var(--verde-suave); border: 1px solid var(--borda);
     border-radius: 40px; padding: 6px 12px 6px 6px;
     animation: fadeSlide 0.4s ease both;
   }
+
   .hall-avatar {
     width: 28px; height: 28px; border-radius: 50%;
     background: rgba(146,198,143,0.25); border: 1px solid var(--verde);
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: 900; color: var(--verde-escuro);
   }
+
   .hall-name { font-size: 13px; font-weight: 700; color: var(--texto); }
   .hall-pts { font-size: 11px; color: var(--verde-escuro); font-weight: 700; }
   .hall-empty { font-size: 13px; color: var(--muted); font-style: italic; padding: 4px 0; }
+
   .hall-nav {
     display: flex; align-items: center; gap: 6px;
     margin-left: auto;
   }
+
   .hall-nav-btn {
     width: 28px; height: 28px; border-radius: 50%;
     background: none; border: 1px solid var(--borda);
@@ -523,12 +535,15 @@
     display: flex; align-items: center; justify-content: center;
     transition: all 0.15s; line-height: 1;
   }
+
   .hall-nav-btn:hover { border-color: var(--verde); color: var(--verde-escuro); }
   .hall-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
   .hall-nav-date {
     font-size: 12px; font-weight: 700;
     color: var(--texto); min-width: 44px; text-align: center;
   }
+
   .hall-nav-hoje {
     font-size: 10px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--verde-escuro);
@@ -536,7 +551,7 @@
     border: 1px solid var(--verde); border-radius: 20px;
     background: var(--verde-suave);
   }
-  /* --- FOOTER --- */
+
   .footer {
     text-align: center;
     margin-top: 52px;
@@ -560,7 +575,6 @@
     text-transform: uppercase;
   }
 
-  /* --- MODAL --- */
   .overlay {
     position: fixed;
     inset: 0;
@@ -596,7 +610,12 @@
     letter-spacing: 0.04em;
   }
 
-  .modal p { font-size: 13px; color: #555; line-height: 1.75; margin-bottom: 10px; }
+  .modal p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
 
   .modal code {
     display: block;
@@ -618,7 +637,6 @@
 </head>
 <body>
 
-<!-- MODAL -->
 <div class="overlay hidden" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="fecharModal()">✕</button>
@@ -633,27 +651,30 @@
   const mesHoje = hoje.getMonth();
   const anoHoje = hoje.getFullYear();
 
-  // Pontos de hoje por ID
   const ptsDia = {};
   if (abaPont) {
     const rows = abaPont.getDataRange().getValues();
     rows.slice(1).forEach(r => {
       const carimbo = new Date(r[2]);
-      if (carimbo.getDate()===diaHoje &&
-          carimbo.getMonth()===mesHoje &&
-          carimbo.getFullYear()===anoHoje) {
-        const id = String(r[3]||"").trim();
-        const total = Number(r[9]||0);
-        if (id) ptsDia[id] = (ptsDia[id]||0) + total;
+      if (carimbo.getDate() === diaHoje &&
+          carimbo.getMonth() === mesHoje &&
+          carimbo.getFullYear() === anoHoje) {
+        const id = String(r[3] || "").trim();
+        const total = Number(r[9] || 0);
+        if (id) ptsDia[id] = (ptsDia[id] || 0) + total;
       }
     });
   }
 
   const dados = abaRank.getDataRange().getValues();
   const resultado = dados.slice(1).map(r => ({
-    pos: r[0], id: r[1], nome: r[2], pts: r[3],
-    pts_hoje: ptsDia[String(r[1]||"").trim()] || 0
+    pos: r[0],
+    id: r[1],
+    nome: r[2],
+    pts: r[3],
+    pts_hoje: ptsDia[String(r[1] || "").trim()] || 0
   }));
+
   return ContentService
     .createTextOutput(JSON.stringify(resultado))
     .setMimeType(ContentService.MimeType.JSON);
@@ -666,10 +687,15 @@
 </div>
 
 <div class="wrap">
-
-  <!-- HEADER -->
   <header class="header">
-    <img class="logo-mark" src="logo.jpg" alt="Victor Afonso Nutricionista" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:1.5px solid var(--borda);background:white;padding:4px;" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='flex'">
+    <img
+      class="logo-mark"
+      src="logo.jpg"
+      alt="Victor Afonso Nutricionista"
+      style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:1.5px solid var(--borda);background:white;padding:4px;"
+      onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='flex';"
+    >
+    <div id="logo-fb" class="logo-fallback">VA</div>
 
     <div class="brand-name">Victor Afonso</div>
     <div class="brand-sub">Nutricionista</div>
@@ -678,13 +704,11 @@
     <div class="challenge-dates">13 de abril — 04 de maio</div>
   </header>
 
-  <!-- STATUS -->
   <div class="status-bar">
     <span class="dot"></span>
     <span id="statusText">Carregando...</span>
   </div>
 
-  <!-- URL CARD -->
   <div class="url-card" style="display:none!important" id="urlCard">
     <label>URL da planilha (Apps Script)</label>
     <div class="url-row">
@@ -696,20 +720,16 @@
     </div>
   </div>
 
-  <!-- PODIUM -->
   <div class="podium-wrap" id="podiumWrap">
     <div class="podium-label">Pódio</div>
     <div class="podium" id="podium"></div>
   </div>
 
-  <!-- CONTROLS -->
   <div class="controls">
     <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nome ou ID..." oninput="filtrar()">
     <button class="btn" onclick="recarregar()">↻ Atualizar</button>
-    <button class="btn" 
   </div>
 
-  <!-- TABLE -->
   <div class="table-head">
     <span>#</span>
     <span>Participante</span>
@@ -718,12 +738,10 @@
 
   <div class="ranking-list" id="rankingList"></div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">Victor Afonso</div>
     <div class="footer-sub">Nutricionista · Ranking oficial</div>
   </footer>
-
 </div>
 
 <script>
@@ -731,145 +749,188 @@
 
   let allData = [];
   let maxPts = 1;
-  let apiUrl = https://script.google.com/macros/s/AKfycbxOcTEvrZE-af3C4c1WwzQyP2qCrcuGEmhSChW2xcW1kH7tIti08z9ksUq0ADhly2VlBA/exec;
+  let apiUrl = "https://script.google.com/macros/s/AKfycbxOcTEvrZE-af3C4c1WwzQyP2qCrcuGEmhSChW2xcW1kH7tIti08z9ksUq0ADhly2VlBA/exec";
 
   function iniciar() {
-    if (apiUrl) carregarUrl(apiUrl);
-    else {
+    const urlSalva = localStorage.getItem("va_ranking_url");
+    if (urlSalva) {
+      apiUrl = urlSalva;
+    }
+
+    if (apiUrl) {
+      const input = document.getElementById("apiUrl");
+      if (input) input.value = apiUrl;
+      carregarUrl(apiUrl);
+    } else {
       document.getElementById("statusText").textContent = "Aguardando conexão com a planilha...";
       document.getElementById("urlCard").style.display = "block";
       document.getElementById("podiumWrap").style.display = "none";
       document.getElementById("rankingList").innerHTML =
-        '<div class="empty" style="padding:60px 0; color:var(--muted); text-align:center; font-size:14px;">🌿 Cole a URL da planilha acima para ver o ranking ao vivo</div>';
+        '<div class="empty">🌿 Cole a URL da planilha acima para ver o ranking ao vivo</div>';
     }
   }
 
   function carregarUrl(url) {
     const inp = document.getElementById("apiUrl");
     const u = url || (inp && inp.value.trim());
-    if (!u) { abrirModal(); return; }
+
+    if (!u) {
+      abrirModal();
+      return;
+    }
 
     document.getElementById("statusText").textContent = "Carregando...";
     document.getElementById("urlCard").style.display = "none";
 
     fetch(u)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error("Falha na resposta da API");
+        return r.json();
+      })
       .then(data => {
-        if (!Array.isArray(data) || !data.length) throw new Error();
+        if (!Array.isArray(data)) throw new Error("Formato inválido");
+
         localStorage.setItem("va_ranking_url", u);
         apiUrl = u;
+
+        if (!data.length) {
+          document.getElementById("statusText").textContent = "Sem dados no ranking ainda.";
+          document.getElementById("podiumWrap").style.display = "none";
+          document.getElementById("rankingList").innerHTML =
+            '<div class="empty">Ainda não há participantes no ranking.</div>';
+          return;
+        }
+
         renderizar(data, false);
       })
-      .catch(() => {
-        document.getElementById("statusText").textContent = "Erro ao carregar. Verifique a URL.";
+      .catch(err => {
+        console.error(err);
+        document.getElementById("statusText").textContent = "Erro ao carregar. Verifique a URL e a implantação.";
         document.getElementById("urlCard").style.display = "block";
-        renderizar(DEMO, true);
+        document.getElementById("podiumWrap").style.display = "none";
+        document.getElementById("rankingList").innerHTML =
+          '<div class="empty">Não foi possível carregar os dados da planilha.</div>';
       });
   }
 
   function renderizar(data, demo) {
-    allData = data;
-    maxPts = Math.max(...data.map(d => +d.pts || 0), 1);
+    allData = [...data].sort((a, b) => (+b.pts || 0) - (+a.pts || 0));
+    maxPts = Math.max(...allData.map(d => +d.pts || 0), 1);
+
     const agora = new Date().toLocaleString("pt-BR");
     document.getElementById("statusText").textContent =
       demo ? `Demonstração · ${agora}` : `Atualizado às ${agora}`;
+
     document.getElementById("podiumWrap").style.display = "block";
-    renderPodium(data.slice(0,3));
-    renderLista(data.slice(3));
+    renderPodium(allData.slice(0, 3));
+    renderLista(allData.slice(3));
   }
 
   function renderPodium(top) {
     const el = document.getElementById("podium");
-    if (!top.length) { el.innerHTML = ""; return; }
-    const medals = ["🥇","🥈","🥉"];
-    const cls    = ["p1","p2","p3"];
-    // ordem visual: 2°, 1°, 3°
+
+    if (!top.length) {
+      el.innerHTML = "";
+      return;
+    }
+
+    const medals = ["🥇", "🥈", "🥉"];
     const visual = top.length >= 2
       ? [top[1], top[0], top[2]].filter(Boolean)
       : top;
+
     const vcls = top.length >= 2
-      ? ["p2","p1","p3"]
-      : cls;
+      ? ["p2", "p1", "p3"]
+      : ["p1", "p2", "p3"];
 
     el.innerHTML = visual.map((item, i) => {
       const idx = top.indexOf(item);
       const ini = iniciais(item.nome || item.id);
+
       return `
         <div class="podium-item ${vcls[i]}">
-          <div class="p-medal">${medals[idx]}</div>
+          <div class="p-medal">${medals[idx] || ""}</div>
           <div class="p-avatar">${ini}</div>
-          <div class="p-name">${item.nome || item.id}</div>
-          <div class="p-id">${item.nome ? item.id : ""}</div>
+          <div class="p-name">${item.nome || item.id || "-"}</div>
+          <div class="p-id">${item.nome ? (item.id || "") : ""}</div>
           <div class="p-block">
-            <div class="p-pts">${item.pts}</div>
+            <div class="p-pts">${item.pts || 0}</div>
             <div class="p-pts-label">pts</div>
           </div>
-        </div>`;
+        </div>
+      `;
     }).join("");
   }
 
   function renderLista(data) {
     const el = document.getElementById("rankingList");
+
     if (!data.length) {
       renderHallInline(el, allData);
       return;
     }
+
     el.innerHTML = data.map((item, i) => {
-      const pct = Math.round((+item.pts / maxPts) * 100);
+      const pct = Math.round(((+item.pts || 0) / maxPts) * 100);
       const delay = (i * 0.035).toFixed(2);
+
       return `
         <div class="row" style="animation-delay:${delay}s">
-          <div class="pos">${item.pos || i+4}</div>
+          <div class="pos">${item.pos || i + 4}</div>
           <div class="info">
-            <div class="name">${item.nome || item.id}</div>
-            <div class="id-tag">${item.nome ? item.id : ""}</div>
+            <div class="name">${item.nome || item.id || "-"}</div>
+            <div class="id-tag">${item.nome ? (item.id || "") : ""}</div>
             <div class="progress">
               <div class="progress-fill" style="width:${pct}%"></div>
             </div>
           </div>
           <div class="pts-wrap">
-            <div class="pts">${item.pts}</div>
+            <div class="pts">${item.pts || 0}</div>
             <div class="pts-label">pts</div>
           </div>
-        </div>`;
+        </div>
+      `;
     }).join("");
   }
 
   function filtrar() {
     const q = document.getElementById("searchInput").value.toLowerCase();
+
     const f = allData.filter(d =>
-      (d.nome||"").toLowerCase().includes(q) ||
-      String(d.id||"").toLowerCase().includes(q)
+      (d.nome || "").toLowerCase().includes(q) ||
+      String(d.id || "").toLowerCase().includes(q)
     );
-    renderPodium(f.slice(0,3));
+
+    if (!f.length) {
+      document.getElementById("podium").innerHTML = "";
+      document.getElementById("rankingList").innerHTML =
+        '<div class="empty">Nenhum participante encontrado.</div>';
+      return;
+    }
+
+    renderPodium(f.slice(0, 3));
     renderLista(f.slice(3));
   }
 
   function recarregar() {
     if (apiUrl) carregarUrl(apiUrl);
-    else renderizar(DEMO, true);
   }
 
-
-  function renderHall(data) {}
-
-  // Data selecionada no hall (começa com hoje)
   let hallDataSelecionada = new Date();
-  hallDataSelecionada.setHours(0,0,0,0);
+  hallDataSelecionada.setHours(0, 0, 0, 0);
 
-  // Data de início do desafio
-  const INICIO_DESAFIO = new Date(2025, 3, 13); // 13/04/2025
+  const INICIO_DESAFIO = new Date(2026, 3, 13);
 
   function renderHallInline(el, data) {
-    const hoje = new Date(); hoje.setHours(0,0,0,0);
-    const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
-    const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"});
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
 
-    // Filtra participantes com 2 pts no dia selecionado
+    const eHoje = hallDataSelecionada.getTime() === hoje.getTime();
+    const dataFmt = hallDataSelecionada.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+
     const perfeitosDia = data.filter(d => {
       if (eHoje) return +d.pts_hoje === 2;
-      // Para dias anteriores, usar pts_por_dia se disponível
-      const key = dataFmt.replace("/","_");
+      const key = dataFmt.replace("/", "_");
       return d.pts_por_dia && +d.pts_por_dia[key] === 2;
     });
 
@@ -877,11 +938,14 @@
       ? perfeitosDia.map((item, i) => {
           const ini = iniciais(item.nome || item.id);
           const delay = (i * 0.06).toFixed(2);
-          return `<div class="hall-chip" style="animation-delay:${delay}s">
-            <div class="hall-avatar">${ini}</div>
-            <span class="hall-name">${item.nome || item.id}</span>
-            <span class="hall-pts">2/2 ✓</span>
-          </div>`;
+
+          return `
+            <div class="hall-chip" style="animation-delay:${delay}s">
+              <div class="hall-avatar">${ini}</div>
+              <span class="hall-name">${item.nome || item.id}</span>
+              <span class="hall-pts">2/2 ✓</span>
+            </div>
+          `;
         }).join("")
       : `<div class="hall-empty">${eHoje ? "Nenhum com 2/2 pontos hoje ainda 🌱" : "Nenhum registro para este dia 📋"}</div>`;
 
@@ -901,39 +965,52 @@
           </div>
         </div>
         <div class="hall-list" id="hallChips">${chips}</div>
-      </div>`;
+      </div>
+    `;
   }
 
   function navegarHall(delta) {
     const nova = new Date(hallDataSelecionada);
     nova.setDate(nova.getDate() + delta);
-    const hoje = new Date(); hoje.setHours(0,0,0,0);
+
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
     if (nova > hoje) return;
     if (nova < INICIO_DESAFIO) return;
+
     hallDataSelecionada = nova;
     const el = document.getElementById("rankingList");
     if (el) renderHallInline(el, allData);
   }
 
   function voltarHoje() {
-    hallDataSelecionada = new Date(); hallDataSelecionada.setHours(0,0,0,0);
+    hallDataSelecionada = new Date();
+    hallDataSelecionada.setHours(0, 0, 0, 0);
     const el = document.getElementById("rankingList");
     if (el) renderHallInline(el, allData);
   }
+
   function iniciais(txt) {
     if (!txt) return "?";
-    const p = txt.trim().split(" ");
-    return p.length >= 2 ? (p[0][0]+p[1][0]).toUpperCase() : txt.slice(0,2).toUpperCase();
+    const p = txt.trim().split(" ").filter(Boolean);
+    return p.length >= 2
+      ? (p[0][0] + p[1][0]).toUpperCase()
+      : txt.slice(0, 2).toUpperCase();
   }
 
-  function abrirModal() { document.getElementById("modal").classList.remove("hidden"); }
+  function abrirModal() {
+    document.getElementById("modal").classList.remove("hidden");
+  }
+
   function fecharModal() {
     document.getElementById("modal").classList.add("hidden");
     document.getElementById("urlCard").style.display = "block";
   }
 
-  // Auto-refresh 5 min
-  setInterval(() => { if (apiUrl) carregarUrl(apiUrl); }, 5 * 60 * 1000);
+  setInterval(() => {
+    if (apiUrl) carregarUrl(apiUrl);
+  }, 5 * 60 * 1000);
 
   iniciar();
 </script>
